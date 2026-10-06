@@ -9,3 +9,12 @@ resource_groups = {
     location = "West Europe"
   }
 }
+
+vnets = {
+  vnet1 = {
+    name                = "comp-tech-vnet"
+    location            = "West Europe"
+    resource_group_name = "comp-tech-rg"
+    address_space       = ["10.0.0.0/16"]
+  }
+  }
