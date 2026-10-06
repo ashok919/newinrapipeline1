@@ -8,7 +8,7 @@ on:
 jobs:
   terraform:
     name: 'Terraform Deploy'
-    runs-on: ubuntu-latest # GitHub-hosted server use karein
+    runs-on: self-hosted # Self-hosted server use karein
 
     defaults:
       run:
