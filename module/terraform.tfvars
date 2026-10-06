@@ -4,4 +4,8 @@ resource_groups = {
     location = "West Europe"
   }
   
+  rg2 = {
+    name     = "comp-tech-rg1"
+    location = "West Europe"
+  }
 }
