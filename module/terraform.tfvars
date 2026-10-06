@@ -21,7 +21,7 @@ vnets = {
 
 subnets = {
   subnet1 = {
-    name                 = "comp_subnet"
+    name                 = "comp_subnet1"
     resource_group_name  = "comp-tech-rg"
     virtual_network_name = "comp_vnet"
     address_prefixes     = ["10.0.1.0/24"]
