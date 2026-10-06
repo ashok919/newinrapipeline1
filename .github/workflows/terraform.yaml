@@ -9,6 +9,10 @@ on:
     branches:
       - main  # Jab koi short-lived feature branch se main ke liye PR banaye
 
+  permissions:
+    id-token: write
+    contents: read
+
 jobs:
   terraform:
     name: 'Terraform Deploy'
