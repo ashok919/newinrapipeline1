@@ -1,0 +1,46 @@
+name: 'Terraform Trunk-Based CI/CD'
+
+# Yahan humne Trunk-Based Strategy ke events set kar diye hain
+on:
+  push:
+    branches:
+      - main  # Jab bhi main branch (Trunk) par direct push ya merge ho
+  pull_request:
+    branches:
+      - main  # Jab koi short-lived feature branch se main ke liye PR banaye
+
+jobs:
+  terraform:
+    name: 'Terraform Deploy'
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./new_infra_pipeline1/newinrapipeline1  
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Azure Login
+      uses: azure/login@v2
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v3
+      with:
+        terraform_wrapper: false
+
+    - name: Terraform Init
+      run: terraform init
+
+    # Trunk-Based practice: PR par sirf plan dikhaye, deploy na kare
+    - name: Terraform Plan
+      if: github.event_name == 'pull_request'
+      run: terraform plan
+
+    # Trunk-Based practice: Jab final code main branch mein push/merge ho, tabhi deploy kare
+    - name: Terraform Apply
+      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+      run: terraform apply -auto-approve
