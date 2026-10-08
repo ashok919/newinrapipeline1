@@ -4,10 +4,7 @@ resource_groups = {
     location = "eastus2"
   }
   
-  rg2 = {
-    name     = "comp-tech-rg1"
-    location = "eastus2"
-  }
+
 }
 
 vnets = {
